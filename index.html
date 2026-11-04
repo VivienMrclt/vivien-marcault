@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="alternate" hreflang="fr" href="https://vivienmrclt.github.io/vivien-marcault/">
+<link rel="alternate" hreflang="en" href="https://vivienmrclt.github.io/vivien-marcault/en/">
+<title>Vivien Marcault</title>
+<meta name="description" content="Vivien Marcault — ingénieur en mathématiques appliquées, machine learning et simulation numérique.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f9f6;
+  --surface: #ffffff;
+  --text: #1a241e;
+  --muted: #586a5f;
+  --line: #dbe5dd;
+  --accent: #2d6a4f;
+  --accent-soft: #e3efe7;
+  --todo: #b45309;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101713; --surface: #17211b; --text: #e3ebe5; --muted: #9bb0a2;
+    --line: #25342b; --accent: #74c69d; --accent-soft: #1b2b22; --todo: #f59e0b;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101713; --surface: #17211b; --text: #e3ebe5; --muted: #9bb0a2;
+  --line: #25342b; --accent: #74c69d; --accent-soft: #1b2b22; --todo: #f59e0b;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.65 Inter, system-ui, sans-serif;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+
+nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+}
+nav .wrap { display: flex; gap: 20px; align-items: center; height: 56px; overflow-x: auto; }
+nav .name { font-weight: 600; margin-right: auto; white-space: nowrap; color: var(--text); }
+nav a.link { color: var(--muted); font-size: 14px; white-space: nowrap; }
+nav a.link:hover { color: var(--accent); text-decoration: none; }
+nav .langs {
+  display: flex; flex: none; border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+}
+nav .langs a, nav .langs span {
+  font-size: 13px; font-weight: 600; padding: 3px 9px; white-space: nowrap;
+}
+nav .langs a { color: var(--muted); }
+nav .langs a:hover { color: var(--accent); text-decoration: none; }
+nav .langs span { background: var(--accent); color: var(--bg); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+header.hero {
+  padding: 72px 0 48px;
+  display: grid; grid-template-columns: 1fr 260px; gap: 48px; align-items: center;
+}
+.hero .intro { grid-column: 1; grid-row: 1; min-width: 0; }
+.hero .portrait {
+  grid-column: 2; grid-row: 1;
+  width: 260px; height: 260px; border-radius: 50%; object-fit: cover;
+  border: 4px solid var(--accent-soft);
+}
+.hero h1 {
+  font-family: "Source Serif 4", Georgia, serif; font-weight: 600;
+  font-size: clamp(34px, 6vw, 52px); line-height: 1.1; margin: 0 0 12px;
+}
+.hero .role { font-size: 19px; color: var(--accent); font-weight: 500; margin: 0 0 20px; }
+.hero p.bio { font-size: 17px; max-width: 640px; margin: 0 0 24px; }
+.updated { margin: 20px 0 0; font-size: 13px; color: var(--muted); }
+.contacts { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-block; padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 500;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text);
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn:hover { text-decoration: none; border-color: var(--accent); }
+
+section { padding: 48px 0; border-top: 1px solid var(--line); }
+section h2 {
+  font-family: "Source Serif 4", Georgia, serif; font-weight: 600;
+  font-size: 28px; margin: 0 0 24px;
+}
+
+.interests { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.interest { background: var(--accent-soft); border-radius: 10px; padding: 16px; }
+.interest h3 { margin: 0 0 6px; font-size: 16px; }
+.interest p { margin: 0; font-size: 14px; color: var(--muted); }
+
+.projects { display: grid; gap: 18px; }
+.project {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px;
+}
+.project .ctx { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+.project h3 { margin: 0 0 12px; font-size: 19px; }
+.project dl { margin: 0; display: grid; grid-template-columns: 90px 1fr; gap: 6px 14px; font-size: 15px; }
+.project dt { color: var(--muted); font-weight: 500; }
+.project dd { margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.tag { font-size: 12px; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+
+.timeline { display: grid; gap: 26px; }
+.job { display: grid; grid-template-columns: 150px 1fr; gap: 16px; }
+.job .when { color: var(--muted); font-size: 14px; padding-top: 2px; }
+.job h3 { margin: 0; font-size: 17px; }
+.job .org { color: var(--accent); font-weight: 500; font-size: 15px; }
+.job ul { margin: 8px 0 0; padding-left: 18px; }
+.job li { margin-bottom: 4px; }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.skills h3 { font-size: 15px; margin: 0 0 8px; }
+.skills p { margin: 0; color: var(--muted); font-size: 15px; }
+
+.todo { color: var(--todo); font-style: italic; }
+
+footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+
+@media (max-width: 600px) {
+  header.hero { padding: 40px 0 32px; grid-template-columns: 1fr; gap: 24px; }
+  .hero .portrait { grid-column: 1; width: 180px; height: 180px; }
+  .hero .intro { grid-row: 2; }
+  .job { grid-template-columns: 1fr; gap: 4px; }
+  .project dl { grid-template-columns: 1fr; gap: 2px; }
+  .project dd { margin-bottom: 8px; }
+  nav .wrap { gap: 14px; }
+  nav a.link { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="#top">Vivien Marcault</a>
+    <a class="link" href="#recherche">Recherche</a>
+    <a class="link" href="#projets">Projets</a>
+    <a class="link" href="#parcours">Parcours</a>
+    <a class="link" href="#competences">Compétences</a>
+    <a class="link" href="#contact">Contact</a>
+    <div class="langs"><span aria-current="true" lang="fr">FR</span><a href="en/" hreflang="en" lang="en" title="English version">EN</a></div>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+<header class="hero">
+  <img class="portrait" src="photo.jpg" alt="Portrait de Vivien Marcault" width="260" height="260">
+  <div class="intro">
+  <h1>Vivien Marcault</h1>
+  <p class="role">Ingénieur en mathématiques appliquées, machine learning et simulation numérique</p>
+  <p class="bio">
+    Ingénieur ENSIMAG, je conçois depuis plusieurs années des outils de calcul pour l'industrie&nbsp;:
+    simulation de mécanique des fluides, optimisation et recherche opérationnelle, machine learning.
+    Je souhaite aujourd'hui orienter mon activité vers la recherche.
+  </p>
+  <div class="contacts">
+    <a class="btn primary js-mail" href="#contact" data-u="tlcrm.neiviv" data-d="moc.liamg">Me contacter</a>
+    <a class="btn" href="https://linkedin.com/in/vivien-marcault">LinkedIn</a>
+    <a class="btn" href="https://github.com/VivienMrclt">GitHub</a>
+  </div>
+  <p class="updated">Dernière mise à jour&nbsp;: <time datetime="2026-11-04">4 novembre 2026</time></p>
+  </div>
+</header>
+
+<section id="recherche">
+  <h2>Intérêts de recherche</h2>
+  <div class="interests">
+    <div class="interest">
+      <h3>Simulation numérique</h3>
+      <p>Modélisation et simulation de phénomènes physiques, mécanique des fluides.</p>
+    </div>
+    <div class="interest">
+      <h3>Optimisation</h3>
+      <p>Recherche opérationnelle et planification appliquées à des problèmes industriels.</p>
+    </div>
+    <div class="interest">
+      <h3>Machine learning</h3>
+      <p>Apprentissage statistique, modèles génératifs, détection d'anomalies.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projets">
+  <h2>Projets</h2>
+  <div class="projects">
+
+    <article class="project">
+      <div class="ctx">Secteur énergie · via MP data · 2 ans</div>
+      <h3>Logiciel de simulation de mécanique des fluides</h3>
+      <dl>
+        <dt>Mission</dt><dd>Développement, sur deux ans, d'un logiciel de simulation de mécanique des fluides.</dd>
+      </dl>
+      <div class="tags"><span class="tag">Simulation numérique</span><span class="tag">Mécanique des fluides</span></div>
+    </article>
+
+    <article class="project">
+      <div class="ctx">Secteur aéronautique · via MP data</div>
+      <h3>Optimisation du planning de transport de pièces en fret aérien</h3>
+      <dl>
+        <dt>Problème</dt><dd>Planifier le transport de pièces entre sites de production par fret aérien.</dd>
+        <dt>Approche</dt><dd>Modélisation en recherche opérationnelle et résolution avec Gurobi.</dd>
+      </dl>
+      <div class="tags"><span class="tag">Recherche opérationnelle</span><span class="tag">Gurobi</span><span class="tag">Python</span></div>
+    </article>
+
+    <article class="project">
+      <div class="ctx">Secteur aéronautique · via MP data</div>
+      <h3>Conception d'une plateforme de recherche opérationnelle</h3>
+      <dl>
+        <dt>Problème</dt><dd>Fournir une infrastructure commune pour développer et exécuter des modèles d'optimisation.</dd>
+        <dt>Approche</dt><dd>Conception de l'architecture de la plateforme sur AWS.</dd>
+      </dl>
+      <div class="tags"><span class="tag">Architecture</span><span class="tag">AWS</span><span class="tag">Recherche opérationnelle</span></div>
+    </article>
+
+    <article class="project">
+      <div class="ctx">Lumen · R&amp;D</div>
+      <h3>Nouveaux algorithmes et dépôt de brevet</h3>
+      <dl>
+        <dt>Problème</dt><dd>Améliorer l'expérience utilisateur et les performances du produit.</dd>
+        <dt>Approche</dt><dd>Conception de nouvelles fonctionnalités et algorithmes.</dd>
+        <dt>Résultat</dt><dd>Brevet déposé.</dd>
+      </dl>
+      <div class="tags"><span class="tag">R&amp;D</span><span class="tag">Brevet</span><span class="tag">Python</span><span class="tag">JavaScript</span></div>
+    </article>
+
+    <article class="project">
+      <div class="ctx">Lumen · stage</div>
+      <h3>Détection d'anomalies pour l'alerting temps réel</h3>
+      <dl>
+        <dt>Problème</dt><dd>Améliorer le système d'alerting temps réel existant.</dd>
+        <dt>Approche</dt><dd>Travail exploratoire avec des autoencodeurs et VAE sur données de production (Spark).</dd>
+      </dl>
+      <div class="tags"><span class="tag">Autoencodeurs</span><span class="tag">VAE</span><span class="tag">Keras</span><span class="tag">Spark</span></div>
+    </article>
+
+  </div>
+</section>
+
+<section id="parcours">
+  <h2>Parcours</h2>
+  <div class="timeline">
+    <div class="job">
+      <div class="when">Depuis 2023<br>Toulouse</div>
+      <div>
+        <h3>Ingénieur consultant</h3>
+        <div class="org"><a href="https://www.linkedin.com/company/mp-data-ds/">MP data</a></div>
+        <ul>
+          <li>Secteur énergie&nbsp;: développement d'un logiciel de simulation de mécanique des fluides (2 ans)</li>
+          <li>Secteur aéronautique&nbsp;: optimisation du transport de pièces en fret aérien, conception d'une plateforme de recherche opérationnelle</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job">
+      <div class="when">2019 – 2022<br>Paris</div>
+      <div>
+        <h3>Data Scientist / Développeur R&amp;D</h3>
+        <div class="org"><a href="https://www.linkedin.com/company/lumentechnologies/">Lumen</a></div>
+        <ul>
+          <li>R&amp;D et dépôt de brevet</li>
+          <li>Analyse de données de production et rapports d'A/B tests (SQL, Spark)</li>
+          <li>Migration du produit de JavaScript vers C++ en garantissant la cohérence des métriques</li>
+          <li>Stage de data science (2019–2020)&nbsp;: alerting temps réel, tableaux de bord</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job">
+      <div class="when">2016 – 2020<br>Grenoble · Stockholm</div>
+      <div>
+        <h3>Diplôme d'ingénieur, informatique et mathématiques appliquées</h3>
+        <div class="org"><a href="https://www.linkedin.com/school/ensimag/">ENSIMAG</a></div>
+        <ul>
+          <li>Filière <a href="https://ensimag.grenoble-inp.fr/fr/formation/ingenieur-de-grenoble-inp-ensimag-filiere-modelisation-mathematique-image-simulation">Modélisation mathématique, image, simulation (MMIS)</a>&nbsp;: modélisation numérique et calcul scientifique, analyse statistique et aide à la décision, traitement d'images</li>
+          <li>Année de cursus en machine learning à <a href="https://www.linkedin.com/school/kth/">KTH</a>, Stockholm (2018–2019)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="competences">
+  <h2>Compétences</h2>
+  <div class="skills">
+    <div>
+      <h3>Mathématiques appliquées</h3>
+      <p>Simulation numérique, optimisation, recherche opérationnelle, statistiques</p>
+    </div>
+    <div>
+      <h3>Machine learning</h3>
+      <p>Autoencodeurs, VAE, TensorFlow, Keras, Pandas, A/B testing</p>
+    </div>
+    <div>
+      <h3>Programmation</h3>
+      <p>Python, C++, SQL / PostgreSQL, R, Java, JavaScript</p>
+    </div>
+    <div>
+      <h3>Données et infrastructure</h3>
+      <p>Spark, HDFS, AWS, Gurobi</p>
+    </div>
+    <div>
+      <h3>Langues</h3>
+      <p>Français (natif), anglais (courant), suédois, espagnol</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <p><a class="js-mail" href="#contact" data-u="tlcrm.neiviv" data-d="moc.liamg" data-show>Email</a> · <a href="https://linkedin.com/in/vivien-marcault">LinkedIn</a> · <a href="https://github.com/VivienMrclt">GitHub</a></p>
+    <p>Site réalisé avec l'aide de <a href="https://claude.ai">Claude</a>, l'assistant IA d'Anthropic.</p>
+    <p>© 2026 Vivien Marcault</p>
+  </div>
+</footer>
+
+<script>
+// Adresse assemblée à l'exécution pour ne pas apparaître en clair dans le code source.
+document.querySelectorAll('.js-mail').forEach(function (a) {
+  var r = function (s) { return s.split('').reverse().join(''); };
+  var addr = r(a.dataset.u) + String.fromCharCode(64) + r(a.dataset.d);
+  a.href = 'mai' + 'lto:' + addr;
+  if (a.hasAttribute('data-show')) a.textContent = addr;
+});
+</script>
+</body>
+</html>
